@@ -1,0 +1,37 @@
+download angular, out it and create global.js in folder Scripts
+
+declare angular.js, global.js in config bundle
+
+declare ng-app in div in _layout.cshtml,
+ex: <div ng-app="myapp">	@renderbody()	</div>
+
+declare ng-app in global in globar js file
+
+declare ng-controller in home.cshtml and home.js
+ex: app.controller("myapp", function($scope, $http)
+{
+	$http.get("controller/actionName")
+	.then(function(res)
+	{
+		$scope.Student = res.data
+		res.data can be seen from debug
+	}
+	)
+}
+)
+
+
+homecontroller has method index(), just return view
+home.cshtml first just render html. at the end of file, 
+call 
+@section scripts {
+	@scripts.Render("~/Views/Home/Home.js")
+}
+
+section to call home.js
+home.js will call api/function (return json) to get data
+home.js is just angular syntax. 
+ex: return $scope.Student = res.data
+res.data can be seen from debug
+
+home.cshtml will be continued by using Studen gotten from home.js
